@@ -1,0 +1,10 @@
+D:\Projects\GPS\GPS\obj\Debug\assemblies\GPS.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\Mono.Android.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\mscorlib.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\Newtonsoft.Json.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\System.Core.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\System.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\System.Net.Http.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\System.Xml.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\System.Xml.Linq.dll
+D:\Projects\GPS\GPS\obj\Debug\assemblies\System.Runtime.Serialization.dll

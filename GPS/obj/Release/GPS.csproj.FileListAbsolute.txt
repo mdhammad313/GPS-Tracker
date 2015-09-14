@@ -1,0 +1,15 @@
+D:\Projects\GPS\GPS\bin\Release\GPS.dll
+D:\Projects\GPS\GPS\bin\Release\GPS.pdb
+D:\Projects\GPS\GPS\bin\Release\GPS.GPS.apk
+D:\Projects\GPS\GPS\bin\Release\GPS.GPS-Signed.apk
+D:\Projects\GPS\GPS\obj\Release\GPS.dll
+D:\Projects\GPS\GPS\obj\Release\GPS.pdb
+D:\Projects\GPS\GPS\obj\Release\android\bin\GPS.GPS.apk
+D:\Projects\GPS\GPS\obj\Release\res\layout\getlocation.xml
+D:\Projects\GPS\GPS\obj\Release\res\values\strings.xml
+D:\Projects\GPS\GPS\obj\Release\res\drawable\icon.png
+D:\Projects\GPS\GPS\obj\Release\R.cs.flag
+D:\Projects\GPS\GPS\obj\Release\uploadflags.txt
+D:\Projects\GPS\GPS\obj\Release\GPS.csprojResolveAssemblyReference.cache
+D:\Projects\GPS\GPS\bin\Release\Newtonsoft.Json.dll
+D:\Projects\GPS\GPS\bin\Release\Newtonsoft.Json.xml

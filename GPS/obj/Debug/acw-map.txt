@@ -1,0 +1,12 @@
+GPS.BackgroundService, GPS;md52d5b319ab200da73649ed4b77bcd1381.BackgroundService
+GPS.BackgroundService, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d5b319ab200da73649ed4b77bcd1381.BackgroundService
+GPS.BackgroundService;md52d5b319ab200da73649ed4b77bcd1381.BackgroundService
+gps.BackgroundService;md52d5b319ab200da73649ed4b77bcd1381.BackgroundService
+GPS.BroadCastReceiver, GPS;md52d5b319ab200da73649ed4b77bcd1381.BroadCastReceiver
+GPS.BroadCastReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d5b319ab200da73649ed4b77bcd1381.BroadCastReceiver
+GPS.BroadCastReceiver;md52d5b319ab200da73649ed4b77bcd1381.BroadCastReceiver
+gps.BroadCastReceiver;md52d5b319ab200da73649ed4b77bcd1381.BroadCastReceiver
+GPS.GelLocation, GPS;md52d5b319ab200da73649ed4b77bcd1381.GelLocation
+GPS.GelLocation, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d5b319ab200da73649ed4b77bcd1381.GelLocation
+GPS.GelLocation;md52d5b319ab200da73649ed4b77bcd1381.GelLocation
+gps.GelLocation;md52d5b319ab200da73649ed4b77bcd1381.GelLocation
