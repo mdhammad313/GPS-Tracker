@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <AndroidDesignerPreferredDevice>5.4" FWVGA</AndroidDesignerPreferredDevice>
-    <SelectedDevice>Sony ST25i</SelectedDevice>
+    <AndroidDesignerPreferredDevice>3.7" WVGA %28Nexus One%29</AndroidDesignerPreferredDevice>
+    <SelectedDevice>Samsung GT-S5282</SelectedDevice>
   </PropertyGroup>
 </Project>

@@ -12,6 +12,7 @@ using Android.Widget;
 
 namespace GPS
 {
+    [Serializable]
     class Coordinates
     {
         public double Latitude { get; set; }
@@ -21,6 +22,10 @@ namespace GPS
         public float Accuracy { get; set; }
 
         public string DeviceId { get; set; }
+
+        public List<string> provider { get; set; }
+
+        public int uniqueId { get; set; } 
     }
 
 

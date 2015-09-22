@@ -6,47 +6,34 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Locations;
-using Android;
 
 
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Newtonsoft.Json;
 using Android.Telephony;
 
 namespace GPS
 {
-    [Activity(Label = "GPS", MainLauncher = true, Icon = "@drawable/icon")]
-    public class GelLocation : Activity , ILocationListener
+    /// <summary>
+    /// 
+    /// </summary>
+    [Activity(Label = "GPS", MainLauncher = false, Icon = "@drawable/icon")]
+    public class GelLocation : Activity
     {
-
         Coordinates latlon = new Coordinates();
-        Location _currentLocation;
-        LocationManager _locationManager;
         TextView _locationText;
         TextView _addressText;
-        string _locationProvider;
+        TextView _lastKnownLocation;
+        TextView _listOfProvider;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static GelLocation instance;
 
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-
-            SetContentView(Resource.Layout.GetLocation);
-            _locationText = FindViewById<TextView>(Resource.Id.textView1);
-            _addressText = FindViewById<TextView>(Resource.Id.textView2);
-            FindViewById<TextView>(Resource.Id.button1).Click += GelLocation_Click;
-
-            InitializeLocationManager();
-            getDeviceId();
-        }
-
-         protected override void OnStart()
-        {
-            base.OnStart();
-
-            StartService(new Intent(this, typeof(BackgroundService)));
-        }
+        private MyLocationReceiver _receiver;
 
         private void getDeviceId()
         {
@@ -62,40 +49,89 @@ namespace GPS
         }
 
 
-        /*The LocationManager class will listen for GPS updates from the device and notify the application by way of events.
-          In this example we ask Android for the best location provider that matches a given set of Criteria and provide that 
-          provider to LocationManager.*/
-        private void InitializeLocationManager()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bundle"></param>
+        async protected override void OnCreate(Bundle bundle)
         {
-            _locationManager = (LocationManager)GetSystemService(LocationService);
-            //Application criteria for selecting provider
-            Criteria criteriaForLocationService = new Criteria{ Accuracy = Accuracy.NoRequirement };
-            IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
+            base.OnCreate(bundle);
+            GelLocation.instance = this;
+            SetContentView(Resource.Layout.GetLocation);
+            _locationText = FindViewById<TextView>(Resource.Id.currentLocationTextView);
+            _addressText = FindViewById<TextView>(Resource.Id.addressTextView);
+            _lastKnownLocation = FindViewById<TextView>(Resource.Id.lastLocationTextView);
+            _listOfProvider = FindViewById<TextView>(Resource.Id.providerList);
+            FindViewById<TextView>(Resource.Id.getAddressButton).Click += GelLocation_Click;
 
-            if (acceptableLocationProviders.Any())
+            getDeviceId();
+
+            latlon = await WebRequestServer.GetLastKnownLocation(latlon);
+
+            if (latlon == null)
             {
-                _locationProvider = acceptableLocationProviders.First();
+                _lastKnownLocation.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A");
             }
+
             else
-            {
-                _locationProvider = String.Empty;
-            }
+                _lastKnownLocation.Text = string.Format("Latitude: " + latlon.Latitude + "\nLongitude: " + latlon.Longitude + "\nAccuracy: " + latlon.Accuracy);
         }
 
-        /*Button Event
-        This method uses the Geocoder API to retrieve a street address for the current location.
-        The Geocoder class retrieves a list of address from Google over the internet.Network calls are expensive, 
-        so the call is made asynchronously using the async/ await keywords*/
-         async private void GelLocation_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void OnStart()
         {
-            if (_currentLocation == null)
+            base.OnStart();
+            StartService(new Intent(this, typeof(BackgroundService)));
+            GelLocation.instance = this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void OnPause()
+        {
+            base.OnPause();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            // UnregisterReceiver(_receiver);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void OnResume()
+        {
+            base.OnResume();
+            IntentFilter filter = new IntentFilter(MyLocationReceiver.GRID_STARTED);
+            filter.AddCategory(Intent.CategoryDefault);
+            _receiver = new MyLocationReceiver(this);
+            RegisterReceiver(_receiver, filter);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        async private void GelLocation_Click(object sender, EventArgs e)
+        {
+
+            if (latlon == null)
             {
                 _addressText.Text = "Can't determine the current address.";
                 return;
             }
 
             Geocoder geocoder = new Geocoder(this);
-            IList<Address> addressList = await geocoder.GetFromLocationAsync(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+            IList<Address> addressList = await geocoder.GetFromLocationAsync(latlon.Latitude, latlon.Longitude, 10);
             Address address;
             List<string> allLocations = new List<string>();
 
@@ -123,67 +159,85 @@ namespace GPS
             _addressText.Text = string.Join("\n", allLocations);
         }
 
-        #region InterfaceMethods
-
-        //Call according to the critweria we set
-         public void OnLocationChanged(Location location)
+        /// <summary>
+        /// 
+        /// </summary>
+        [BroadcastReceiver]
+        public class MyLocationReceiver : BroadcastReceiver
         {
-            _currentLocation = location;
-            
-            if (_currentLocation == null)
+            GelLocation _myactivity;
+            //Coordinates GetLocation;
+            /// <summary>
+            /// 
+            /// </summary>
+            public MyLocationReceiver()
             {
-                _locationText.Text = "Unable to determine your location.";
+
             }
-            else
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="myactivity"></param>
+            public MyLocationReceiver(GelLocation myactivity)
             {
-                _locationText.Text = String.Format("Latitude: {0} \nLongitude: {1} \nAccuracy: {2}", _currentLocation.Latitude, _currentLocation.Longitude,_currentLocation.Accuracy);
-                //Android.Util.Log.Info("GetLocation", "Latitude: " + _currentLocation.Latitude.ToString() + "        Longitude: " + _currentLocation.Longitude.ToString() );
-                //latlon.Latitude = _currentLocation.Latitude;
-                //latlon.Longitude = _currentLocation.Longitude;
-                //latlon.Accuracy = _currentLocation.Accuracy;
-                //var responseString = await WebRequestServer.SendingCordinates(latlon);
-                //Toast.MakeText(this, responseString, ToastLength.Short).Show();
+                _myactivity = myactivity;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly string GRID_STARTED = "GRID_STARTED";
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="context"></param>
+            /// <param name="intent"></param>
+            public override void OnReceive(Context context, Intent intent)
+            {
+                try
+                {
+                    //Geting instance of base class
+                    _myactivity = GelLocation.instance;
+
+
+
+                    if (intent.Action == GRID_STARTED)
+                    {
+                        _myactivity.latlon = JsonConvert.DeserializeObject<Coordinates>(intent.GetStringExtra("cor"));
+
+                        //_myactivity.RunOnUiThread(() =>
+                        //{
+
+
+                        _myactivity._locationText.Text = String.Format("Latitude: {0} \nLongitude: {1} \nAccuracy: {2}", _myactivity.latlon.Latitude, _myactivity.latlon.Longitude, _myactivity.latlon.Accuracy);
+
+                        _myactivity._listOfProvider.Text = "";
+                        for (int i = 0; i < _myactivity.latlon.provider.Count; i++)
+                        {
+                            _myactivity._listOfProvider.Text += String.Format(_myactivity.latlon.provider[i]);
+
+                            if (i < _myactivity.latlon.provider.Count - 1)
+                            {
+                                _myactivity._listOfProvider.Text += "\n";
+                            }
+                        }
+                        //});
+
+
+                        //  Toast.MakeText(context, "Custom Receiver", ToastLength.Long).Show();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
             }
         }
-
-        public void OnProviderDisabled(string provider)
-        {
-            InitializeLocationManager();
-        }
-
-        public void OnProviderEnabled(string provider)
-        {
-            InitializeLocationManager();
-        }
-
-        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
-        {
-            
-        }
-        #endregion
-
-        //Override OnResume so that Activity1 will begin listening to the LocationManager when the activity comes into the foreground:
-        protected override void OnResume()
-        {
-            base.OnResume();
-            _locationManager.RequestLocationUpdates(_locationProvider, 10000, 0, this);
-
-        }
-
-        //Override OnPause and unsubscribe Activity1 from the LocationManager when the activity goes into the background
-        protected override void OnPause()
-        {
-            base.OnPause();
-            //_locationManager.RemoveUpdates(this);
-        }
-
-        protected override void OnDestroy()
-        {
-       
-            base.OnDestroy();
-            //Android.Util.Log.Info("GetLocation: ", IsFinishing.ToString());
-        }
-
     }
+
 }
 
