@@ -26,7 +26,7 @@
         </member>
         <member name="F:GPS.GelLocation.instance">
             <summary>
-            
+            Initialize instance of class 
             </summary>
         </member>
         <member name="M:GPS.GelLocation.OnCreate(Android.OS.Bundle)">
@@ -37,7 +37,7 @@
         </member>
         <member name="M:GPS.GelLocation.OnStart">
             <summary>
-            
+            Start service on start up
             </summary>
         </member>
         <member name="M:GPS.GelLocation.OnPause">
@@ -55,16 +55,9 @@
             
             </summary>
         </member>
-        <member name="M:GPS.GelLocation.GelLocation_Click(System.Object,System.EventArgs)">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="T:GPS.GelLocation.MyLocationReceiver">
             <summary>
-            
+            Custom receiver class
             </summary>
         </member>
         <member name="M:GPS.GelLocation.MyLocationReceiver.#ctor">
@@ -90,10 +83,51 @@
             <param name="context"></param>
             <param name="intent"></param>
         </member>
+        <member name="T:GPS.LoginActivity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GPS.LoginActivity.OnCreate(Android.OS.Bundle)">
+            <summary>
+            
+            </summary>
+            <param name="bundle"></param>
+        </member>
+        <member name="T:GPS.SplashActivity">
+            <summary>
+            Check already stored preference
+            </summary>
+        </member>
+        <member name="M:GPS.SplashActivity.OnCreate(Android.OS.Bundle)">
+            <summary>
+            Firsst Activity to run
+            </summary>
+            <param name="bundle"></param>
+        </member>
+        <member name="T:GPS.TraceLocationActivity">
+            <summary>
+            Trace Other user location
+            </summary>
+        </member>
+        <member name="M:GPS.TraceLocationActivity.OnCreate(Android.OS.Bundle)">
+            <summary>
+            
+            </summary>
+            <param name="bundle"></param>
+        </member>
+        <member name="M:GPS.TraceLocationActivity.TraceLocationActivity_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="F:GPS.WebRequestServer.ServerRootURL">
             <summary>
             Server Ip where Server is hosted
             </summary>
+            
         </member>
         <member name="M:GPS.WebRequestServer.SendingCordinates(GPS.Coordinates)">
             <summary>

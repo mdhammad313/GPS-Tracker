@@ -20,13 +20,14 @@ D:\Projects\GPS-Tracker\GPS\bin\Debug\GPS.GPS.apk
 D:\Projects\GPS-Tracker\GPS\bin\Debug\GPS.GPS-Signed.apk
 D:\Projects\GPS-Tracker\GPS\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\GPS-Tracker\GPS\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.csprojResolveAssemblyReference.cache
 D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.dll
 D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.pdb
 D:\Projects\GPS-Tracker\GPS\obj\Debug\android\bin\GPS.GPS.apk
+D:\Projects\GPS-Tracker\GPS\obj\Debug\res\layout\tracelocation.xml
+D:\Projects\GPS-Tracker\GPS\obj\Debug\res\layout\loginlayout.xml
 D:\Projects\GPS-Tracker\GPS\obj\Debug\res\layout\getlocation.xml
 D:\Projects\GPS-Tracker\GPS\obj\Debug\res\values\strings.xml
 D:\Projects\GPS-Tracker\GPS\obj\Debug\res\drawable\icon.png
 D:\Projects\GPS-Tracker\GPS\obj\Debug\R.cs.flag
 D:\Projects\GPS-Tracker\GPS\obj\Debug\uploadflags.txt
-D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.csprojResolveAssemblyReference.cache
-D:\Projects\GPS-Tracker\GPS\obj\Debug\res\layout\tracelocation.xml

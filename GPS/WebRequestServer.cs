@@ -20,8 +20,10 @@ namespace GPS
         /// <summary>
         /// Server Ip where Server is hosted
         /// </summary>
-        private static Uri ServerRootURL = new Uri("http://192.168.0.71");
-        
+        /// 
+        //private static Uri ServerRootURL = new Uri("http://192.168.0.71");
+        private static Uri ServerRootURL = new Uri("http://pggpstracker.azurewebsites.net/");
+
         /// <summary>
         /// Sending data in Json format to webservice
         /// </summary>
@@ -29,7 +31,7 @@ namespace GPS
         /// <returns></returns>
         async public static Task<string> SendingCordinates(Coordinates longlat)
         {
-            
+
             try
             {
                 HttpClient client = new HttpClient();
@@ -41,7 +43,8 @@ namespace GPS
                 StringContent requestContent = new StringContent(requestJson);
                 requestContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage response = await client.PostAsync("/webservice/api/location/getlocation", requestContent);
+                //HttpResponseMessage response = await client.PostAsync("/webservice/api/location/getlocation", requestContent);
+                HttpResponseMessage response = await client.PostAsync("/api/location/getlocation", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -51,6 +54,13 @@ namespace GPS
                 return "Unable to save location on server";
 
             }
+
+            catch (System.Net.WebException ex)
+            {
+                Toast.MakeText(Application.Context, "Network is unreachable", ToastLength.Short).Show();
+                return null;
+            }
+
             catch (Exception ex)
             {
 
@@ -72,12 +82,13 @@ namespace GPS
                 client.BaseAddress = ServerRootURL;
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
 
-                
+
                 string requestJson = JsonConvert.SerializeObject(longlat);
                 StringContent requestContent = new StringContent(requestJson);
                 requestContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage response = await client.PostAsync("/webservice/api/location/lastlocation", requestContent);
+                //HttpResponseMessage response = await client.PostAsync("/webservice/api/location/lastlocation", requestContent);
+                HttpResponseMessage response = await client.PostAsync("/api/location/lastlocation", requestContent);
 
 
                 if (response.IsSuccessStatusCode)
@@ -115,6 +126,14 @@ namespace GPS
 
 
             }
+
+            catch (System.Net.WebException ex)
+            {
+                Toast.MakeText(Application.Context, "Network is unreachable", ToastLength.Short).Show();
+                return null;
+            }
+
+
             catch (Exception ex)
             {
                 throw;
@@ -139,7 +158,14 @@ namespace GPS
                 StringContent requestContent = new StringContent(requestJson);
                 requestContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage response = await client.PostAsync("/webservice/api/location/tracelastlocation", requestContent);
+                //HttpResponseMessage response = await client.PostAsync("/webservice/api/location/tracelastlocation", requestContent);
+                HttpResponseMessage response = await client.PostAsync("/api/location/tracelastlocation", requestContent);
+
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return null;
+                }
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -153,15 +179,56 @@ namespace GPS
                     return null;
                 }
             }
+
+            catch (System.Net.WebException ex)
+            {
+                Toast.MakeText(Application.Context, "Network is unreachable", ToastLength.Short).Show();
+                return null;
+            }
+
             catch (Exception ex)
             {
                 throw;
             }
         }
 
+        /// <summary>
+        /// Check Wether shared preference id exisat in our data
+        /// </summary>
+        /// <param name="longlat"></param>
+        /// <returns></returns>
+        //async public static Task<Coordinates> SharedPreferenceIdAuthen(Coordinates longlat)
+        //{
+        //    try
+        //    {
+        //        Coordinates latlon = new Coordinates();
+        //        HttpClient client = new HttpClient();
+        //        client.BaseAddress = ServerRootURL;
+        //        client.DefaultRequestHeaders.Add("Accept", "application/json");
 
+        //        string requestJson = JsonConvert.SerializeObject(longlat);
+        //        StringContent requestContent = new StringContent(requestJson);
+        //        requestContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
+        //        HttpResponseMessage response = await client.PostAsync("/webservice/api/location/tracelastlocation", requestContent);
 
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string lastLocation = await response.Content.ReadAsStringAsync();
+        //            latlon = JsonConvert.DeserializeObject<Coordinates>(lastLocation);
+
+        //            return latlon;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
 
     }
 }

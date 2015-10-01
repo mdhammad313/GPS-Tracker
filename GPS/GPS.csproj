@@ -58,9 +58,11 @@
     <Compile Include="BackgroundService.cs" />
     <Compile Include="BroadCastReceiver.cs" />
     <Compile Include="GelLocation.cs" />
+    <Compile Include="LoginActivity.cs" />
     <Compile Include="LongitudeLatitude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashActivity.cs" />
     <Compile Include="TraceLocationActivity.cs" />
     <Compile Include="WebRequestServer.cs" />
   </ItemGroup>
@@ -72,6 +74,10 @@
     <AndroidResource Include="Resources\layout\TraceLocation.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\LoginLayout.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <None Include="Resources\LoginLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\GetLocation.axml" />

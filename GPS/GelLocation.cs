@@ -28,8 +28,11 @@ namespace GPS
         TextView _addressText;
         TextView _lastKnownLocation;
         TextView _listOfProvider;
+        Button _traceLocationButton;
+        Coordinates sharedPreferenceId;
+
         /// <summary>
-        /// 
+        /// Initialize instance of class 
         /// </summary>
         public static GelLocation instance;
 
@@ -48,42 +51,69 @@ namespace GPS
             }
         }
 
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="bundle"></param>
         async protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-            GelLocation.instance = this;
-            SetContentView(Resource.Layout.GetLocation);
-            _locationText = FindViewById<TextView>(Resource.Id.currentLocationTextView);
-            _addressText = FindViewById<TextView>(Resource.Id.addressTextView);
-            _lastKnownLocation = FindViewById<TextView>(Resource.Id.lastLocationTextView);
-            _listOfProvider = FindViewById<TextView>(Resource.Id.providerList);
-            FindViewById<TextView>(Resource.Id.getAddressButton).Click += GelLocation_Click;
-
-            getDeviceId();
-
-            latlon = await WebRequestServer.GetLastKnownLocation(latlon);
-
-            if (latlon == null)
+            try
             {
-                _lastKnownLocation.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A");
-            }
+                base.OnCreate(bundle);
+                //Get object of this class to show data in broadc
+                GelLocation.instance = this;
 
-            else
-                _lastKnownLocation.Text = string.Format("Latitude: " + latlon.Latitude + "\nLongitude: " + latlon.Longitude + "\nAccuracy: " + latlon.Accuracy);
+                SetContentView(Resource.Layout.GetLocation);
+                _locationText = FindViewById<TextView>(Resource.Id.currentLocationTextView);
+                _addressText = FindViewById<TextView>(Resource.Id.addressTextView);
+                _lastKnownLocation = FindViewById<TextView>(Resource.Id.lastLocationTextView);
+                _listOfProvider = FindViewById<TextView>(Resource.Id.providerList);
+//                FindViewById<TextView>(Resource.Id.getAddressButton).Click += GelLocation_Click;
+                _traceLocationButton = FindViewById<Button>(Resource.Id.traceLocationButton);
+                _traceLocationButton.Click += _traceLocationButton_Click;
+
+                //Get shared preferences data 
+                sharedPreferenceId = JsonConvert.DeserializeObject<Coordinates>(Intent.GetStringExtra("user"));
+
+                //Get device id for currentr user
+                getDeviceId();
+
+                //Get last known location of current user
+                latlon = await WebRequestServer.GetLastKnownLocation(latlon);
+
+                //if respond is null
+                if (latlon == null)
+                {
+                    _lastKnownLocation.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A");
+                }
+
+                //Otherwise perform
+                else
+                    _lastKnownLocation.Text = string.Format("Latitude: " + latlon.Latitude + "\nLongitude: " + latlon.Longitude + "\nAccuracy: " + latlon.Accuracy);
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private void _traceLocationButton_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(TraceLocationActivity));
+            this.StartActivity(intent);
         }
 
         /// <summary>
-        /// 
+        /// Start service on start up
         /// </summary>
         protected override void OnStart()
         {
             base.OnStart();
-            StartService(new Intent(this, typeof(BackgroundService)));
+            Intent intent = new Intent(this, typeof(BackgroundService));
+            //Send preferences to the service to send id to server
+            intent.PutExtra("userId", sharedPreferenceId.uniqueId.ToString());
+            StartService(intent);
             GelLocation.instance = this;
         }
 
@@ -109,6 +139,7 @@ namespace GPS
         /// </summary>
         protected override void OnResume()
         {
+            //Register custom receiver receiver 
             base.OnResume();
             IntentFilter filter = new IntentFilter(MyLocationReceiver.GRID_STARTED);
             filter.AddCategory(Intent.CategoryDefault);
@@ -116,51 +147,64 @@ namespace GPS
             RegisterReceiver(_receiver, filter);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async private void GelLocation_Click(object sender, EventArgs e)
+ 
+
+
+        async private void streetAddress()
         {
-
-            if (latlon == null)
+            try
             {
-                _addressText.Text = "Can't determine the current address.";
-                return;
-            }
-
-            Geocoder geocoder = new Geocoder(this);
-            IList<Address> addressList = await geocoder.GetFromLocationAsync(latlon.Latitude, latlon.Longitude, 10);
-            Address address;
-            List<string> allLocations = new List<string>();
-
-
-            for (int j = 0; j < addressList.Count; j++)
-            {
-                address = addressList.ElementAt(j);
-
-                if (address != null)
+                if (latlon.Latitude == 0 || latlon.Longitude == 0 || latlon == null)
                 {
-                    StringBuilder deviceAddress = new StringBuilder();
-                    for (int i = 0; i <= address.MaxAddressLineIndex; i++)
+                    _addressText.Text = "Can't determine the current address.";
+                    return;
+                }
+
+                Geocoder geocoder = new Geocoder(this);
+                IList<Address> addressList = await geocoder.GetFromLocationAsync(latlon.Latitude, latlon.Longitude, 10);
+                Address address;
+                List<string> allLocations = new List<string>();
+
+
+                for (int j = 0; j < addressList.Count; j++)
+                {
+                    address = addressList.ElementAt(j);
+
+                    if (address != null)
                     {
-                        deviceAddress.Append(address.GetAddressLine(i)).AppendLine(",");
+                        StringBuilder deviceAddress = new StringBuilder();
+                        for (int i = 0; i <= address.MaxAddressLineIndex; i++)
+                        {
+                            deviceAddress.Append(address.GetAddressLine(i)).AppendLine(",");
+                        }
+                        _addressText.Text = deviceAddress.ToString();
                     }
-                    _addressText.Text = deviceAddress.ToString();
-                }
-                else
-                {
-                    _addressText.Text = "Unable to determine the address.";
-                }
+                    else
+                    {
+                        _addressText.Text = "Unable to determine the address.";
+                    }
 
-                allLocations.Add(_addressText.Text);
+                    allLocations.Add(_addressText.Text);
+                }
+                _addressText.Text = string.Join("\n", allLocations);
+
             }
-            _addressText.Text = string.Join("\n", allLocations);
+
+            catch (Java.IO.IOException ex)
+            {
+                Toast.MakeText(Application.Context, "Network is unreachable", ToastLength.Short).Show();
+            }
+
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
+
         /// <summary>
-        /// 
+        /// Custom receiver class
         /// </summary>
         [BroadcastReceiver]
         public class MyLocationReceiver : BroadcastReceiver
@@ -201,8 +245,7 @@ namespace GPS
                     //Geting instance of base class
                     _myactivity = GelLocation.instance;
 
-
-
+                    
                     if (intent.Action == GRID_STARTED)
                     {
                         _myactivity.latlon = JsonConvert.DeserializeObject<Coordinates>(intent.GetStringExtra("cor"));
@@ -210,10 +253,17 @@ namespace GPS
                         //_myactivity.RunOnUiThread(() =>
                         //{
 
+                        _myactivity._locationText.Text = String.Format("Latitude: {0} \nLongitude: {1} \nAccuracy: {2} \nSpeed: {3}", _myactivity.latlon.Latitude, _myactivity.latlon.Longitude, _myactivity.latlon.Accuracy , _myactivity.latlon.speed);
+                        _myactivity.streetAddress();
 
-                        _myactivity._locationText.Text = String.Format("Latitude: {0} \nLongitude: {1} \nAccuracy: {2}", _myactivity.latlon.Latitude, _myactivity.latlon.Longitude, _myactivity.latlon.Accuracy);
-
+                        //Print provider list
                         _myactivity._listOfProvider.Text = "";
+
+                        if(_myactivity.latlon.provider.Count == 0)
+                        {
+                            _myactivity._listOfProvider.Text = "N\\A";
+                        }
+
                         for (int i = 0; i < _myactivity.latlon.provider.Count; i++)
                         {
                             _myactivity._listOfProvider.Text += String.Format(_myactivity.latlon.provider[i]);
@@ -224,7 +274,6 @@ namespace GPS
                             }
                         }
                         //});
-
 
                         //  Toast.MakeText(context, "Custom Receiver", ToastLength.Long).Show();
                     }

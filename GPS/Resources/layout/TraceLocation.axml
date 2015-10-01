@@ -23,11 +23,12 @@
         android:paddingTop="3px"
         android:textColor="@android:color/holo_green_dark" />
     <TextView
-        android:text="Latitude: \r\nLongitude: \r\nAccuracy: "
+        android:text="Latitude: \r\nLongitude: \r\nAccuracy: \r\nDateTime: \r\nSpeed: "
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="77.5dp"
+        android:layout_height="107.5dp"
         android:id="@+id/lastLocationTextView"
         android:paddingLeft="10px"
-        android:paddingTop="5px" />
+        android:paddingTop="5px"
+        android:layout_marginBottom="39.7dp" />
 </LinearLayout>

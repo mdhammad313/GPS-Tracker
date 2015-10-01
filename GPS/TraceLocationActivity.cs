@@ -12,34 +12,48 @@ using Android.Widget;
 
 namespace GPS
 {
-    [Activity(Label = "TraceLocationActivity", MainLauncher = true)]
+    /// <summary>
+    /// Trace Other user location
+    /// </summary>
+    [Activity(Label = "TraceLocationActivity")]
     public class TraceLocationActivity : Activity
     {
-        Coordinates longlat = new Coordinates();
+
         private TextView _showData;
         private EditText _sendId;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bundle"></param>
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.TraceLocation);
+
             _showData = FindViewById<TextView>(Resource.Id.lastLocationTextView);
             _sendId = FindViewById<EditText>(Resource.Id.traceLastLocation);
             FindViewById<Button>(Resource.Id.LastLocationButton).Click += TraceLocationActivity_Click;
-            // Create your application here
-
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         async private void TraceLocationActivity_Click(object sender, EventArgs e)
         {
             try
             {
+                Coordinates longlat = new Coordinates();
+
                 if (_sendId.Text == "")
                 {
                     Toast.MakeText(this, "First Enter id to Trace Location", ToastLength.Long);
                 }
 
+                //Send ID to webRequest class to request server 
                 else
                 {
                     longlat.uniqueId = int.Parse(_sendId.Text);
@@ -47,11 +61,11 @@ namespace GPS
 
                     if (longlat == null)
                     {
-                        _showData.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A");
+                        _showData.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A" + "\nDatetime: " + "N\\A" + "\nSpeed: " + "N\\A");
                     }
 
                     else
-                        _showData.Text = string.Format("Latitude: " + longlat.Latitude + "\nLongitude: " + longlat.Longitude + "\nAccuracy: " + longlat.Accuracy);
+                        _showData.Text = string.Format("Latitude: " + longlat.Latitude + "\nLongitude: " + longlat.Longitude + "\nAccuracy: " + longlat.Accuracy + "\nDateTime: " + longlat.timeStamp + "\nSpeed: " + longlat.speed);
                 }
 
             }

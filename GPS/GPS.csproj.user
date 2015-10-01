@@ -2,6 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidDesignerPreferredDevice>3.7" WVGA %28Nexus One%29</AndroidDesignerPreferredDevice>
-    <SelectedDevice>Samsung GT-S5282</SelectedDevice>
+    <SelectedDevice>Sony ST25i</SelectedDevice>
   </PropertyGroup>
 </Project>

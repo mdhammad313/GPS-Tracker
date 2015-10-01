@@ -16,10 +16,10 @@
             android:focusable="false"
             android:hint="Time in seconds to Get Location" />
         <Button
-            android:text="Get Location"
+            android:text="Click here to trace Location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/getAddressButton" />
+            android:id="@+id/traceLocationButton" />
         <TextView
             android:text="Current Location"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -30,9 +30,9 @@
             android:paddingTop="3px"
             android:textColor="@android:color/holo_green_dark" />
         <TextView
-            android:text="Latitude: \r\nLongitude: \r\nAccuracy: "
+            android:text="Latitude: \r\nLongitude: \r\nAccuracy: \r\nSpeed:  "
             android:layout_width="match_parent"
-            android:layout_height="61.2dp"
+            android:layout_height="81.2dp"
             android:id="@+id/currentLocationTextView"
             android:height="50px"
             android:paddingLeft="10px"
@@ -72,7 +72,7 @@
             android:paddingLeft="10px"
             android:paddingTop="5px" />
         <TextView
-            android:text="Current Address"
+            android:text="Street Address"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="25.3dp"
@@ -86,7 +86,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/addressTextView"
             android:layout_marginBottom="23.8dp"
-            android:height="430px"
             android:paddingTop="10px"
             android:paddingLeft="5px" />
     </LinearLayout>

@@ -29,3 +29,4 @@ D:\Projects\GPS-Tracker\GPS\obj\Release\res\drawable\icon.png
 D:\Projects\GPS-Tracker\GPS\obj\Release\R.cs.flag
 D:\Projects\GPS-Tracker\GPS\obj\Release\uploadflags.txt
 D:\Projects\GPS-Tracker\GPS\obj\Release\res\layout\tracelocation.xml
+D:\Projects\GPS-Tracker\GPS\obj\Release\res\layout\loginlayout.xml
