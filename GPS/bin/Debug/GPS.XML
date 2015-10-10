@@ -4,11 +4,12 @@
         <name>GPS</name>
     </assembly>
     <members>
-        <member name="M:GPS.BackgroundService.BroadcastStarted(GPS.Coordinates)">
+        <member name="M:GPS.BackgroundService.BroadcastStarted(GPS.Coordinates,System.String)">
             <summary>
             Service broadcasting to activities along with data 
             </summary>
             <param name="location"></param>
+            <param name="InComingData"></param>
         </member>
         <member name="M:GPS.BroadCastReceiver.OnReceive(Android.Content.Context,Android.Content.Intent)">
             <summary>
@@ -24,9 +25,14 @@
             
             </summary>
         </member>
-        <member name="F:GPS.GelLocation.instance">
+        <member name="F:GPS.GelLocation.isRunning">
             <summary>
             Initialize instance of class 
+            </summary>
+        </member>
+        <member name="F:GPS.GelLocation.instance">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:GPS.GelLocation.OnCreate(Android.OS.Bundle)">
@@ -34,6 +40,11 @@
             
             </summary>
             <param name="bundle"></param>
+        </member>
+        <member name="M:GPS.GelLocation.OnStop">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:GPS.GelLocation.OnStart">
             <summary>
@@ -54,6 +65,12 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:GPS.GelLocation.streetAddress(GPS.Coordinates)">
+            <summary>
+            
+            </summary>
+            <param name="latlon"></param>
         </member>
         <member name="T:GPS.GelLocation.MyLocationReceiver">
             <summary>
@@ -94,6 +111,11 @@
             </summary>
             <param name="bundle"></param>
         </member>
+        <member name="T:GPS.Coordinates">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:GPS.SplashActivity">
             <summary>
             Check already stored preference
@@ -123,6 +145,12 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:GPS.TraceLocationActivity.streetAddress(GPS.Coordinates)">
+            <summary>
+            Street Address
+            </summary>
+            <param name="latlon"></param>
+        </member>
         <member name="F:GPS.WebRequestServer.ServerRootURL">
             <summary>
             Server Ip where Server is hosted
@@ -130,6 +158,9 @@
             
         </member>
         <member name="M:GPS.WebRequestServer.SendingCordinates(GPS.Coordinates)">
+            <summary>
+            
+            </summary>
             <summary>
             Sending data in Json format to webservice
             </summary>

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Locations;
 
 namespace GPS
 {
@@ -16,7 +17,8 @@ namespace GPS
     [IntentFilter(new[] { Intent.ActionBootCompleted })]
     class BroadCastReceiver : BroadcastReceiver
     {
-        
+     //   private BackgroundService bs;
+      //  private Context cont;
         /// <summary>
         /// Invoked by OS when device is rebooted Permisssion is being given
         /// in manifest . When device rebooted OS broadcast it to all 
@@ -26,8 +28,16 @@ namespace GPS
         /// <param name="intent"></param>
         public override void OnReceive(Context context, Intent intent)
         {
-            Toast.MakeText(context, "Broadcast Receive: " , ToastLength.Long).Show();
-            context.StartService(new Intent(context, typeof(BackgroundService)));
+
+            try
+            {
+                Toast.MakeText(context, "Broadcast Receive: ", ToastLength.Long).Show();
+                context.StartService(new Intent(context, typeof(BackgroundService)));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

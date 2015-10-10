@@ -48,8 +48,8 @@ namespace GPS
                     uniqueId =  int.Parse(_uniqueId.Text)
                 };
 
-                //If checkbox is enabled then save data in shared preference
-                if (_rememberMe.Checked)
+                //If checkbox is enabled or disable then save data in shared preference
+                if (_rememberMe.Checked || _rememberMe.Checked == false)
                 {
                    
                     ISharedPreferences pref = Application.Context.GetSharedPreferences("UserInfo", FileCreationMode.Private);
@@ -67,15 +67,15 @@ namespace GPS
                 }
 
                 //Otherwise dont save in preferences only send data to main activity
-                else
-                {
-                    Intent intent = new Intent(this, typeof(GelLocation));
-                    //Send preferences to main activity
-                    intent.PutExtra("user", JsonConvert.SerializeObject(getUniqueId));
-                    this.StartActivity(intent);
-                    //User cannot navigate to this activity
-                    this.Finish();
-                }
+                //else
+                //{
+                //    Intent intent = new Intent(this, typeof(GelLocation));
+                //    //Send preferences to main activity
+                //    intent.PutExtra("user", JsonConvert.SerializeObject(getUniqueId));
+                //    this.StartActivity(intent);
+                //    //User cannot navigate to this activity
+                //    this.Finish();
+                //}
 
             }
             catch (Exception ex)

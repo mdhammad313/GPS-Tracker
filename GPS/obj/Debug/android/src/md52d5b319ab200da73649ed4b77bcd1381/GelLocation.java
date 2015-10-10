@@ -10,6 +10,7 @@ public class GelLocation
 	static {
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
+			"n_onStop:()V:GetOnStopHandler\n" +
 			"n_onStart:()V:GetOnStartHandler\n" +
 			"n_onPause:()V:GetOnPauseHandler\n" +
 			"n_onDestroy:()V:GetOnDestroyHandler\n" +
@@ -33,6 +34,14 @@ public class GelLocation
 	}
 
 	private native void n_onCreate (android.os.Bundle p0);
+
+
+	public void onStop ()
+	{
+		n_onStop ();
+	}
+
+	private native void n_onStop ();
 
 
 	public void onStart ()

@@ -60,6 +60,7 @@
     <Compile Include="GelLocation.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LongitudeLatitude.cs" />
+    <Compile Include="RequestModel.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />

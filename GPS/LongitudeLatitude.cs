@@ -12,8 +12,11 @@ using Android.Widget;
 
 namespace GPS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
-    class Coordinates
+     class Coordinates
     {
         public double Latitude { get; set; }
 
@@ -25,14 +28,19 @@ namespace GPS
 
         public List<string> provider { get; set; }
 
-        public int uniqueId { get; set; } 
+        public int uniqueId { get; set; }
 
         public float speed { get; set; }
 
         public DateTime timeStamp { get; set; }
+
+        public float Bearing { get; set; }
+
+        public double altittude { get; set; }
+
     }
 
 
-    
+
 
 }

@@ -14,6 +14,7 @@ using System.Text;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 using Android.Telephony;
+using System.Threading.Tasks;
 
 namespace GPS
 {
@@ -28,14 +29,19 @@ namespace GPS
         TextView _addressText;
         TextView _lastKnownLocation;
         TextView _listOfProvider;
+        TextView _lastTimeStamp;
         Button _traceLocationButton;
         Coordinates sharedPreferenceId;
+        TextView _idView;
 
         /// <summary>
         /// Initialize instance of class 
         /// </summary>
+        static bool isRunning = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public static GelLocation instance;
-
         private MyLocationReceiver _receiver;
 
         private void getDeviceId()
@@ -67,29 +73,36 @@ namespace GPS
                 _locationText = FindViewById<TextView>(Resource.Id.currentLocationTextView);
                 _addressText = FindViewById<TextView>(Resource.Id.addressTextView);
                 _lastKnownLocation = FindViewById<TextView>(Resource.Id.lastLocationTextView);
+                _lastTimeStamp = FindViewById<TextView>(Resource.Id.lastTwoTimeStamp);
                 _listOfProvider = FindViewById<TextView>(Resource.Id.providerList);
-//                FindViewById<TextView>(Resource.Id.getAddressButton).Click += GelLocation_Click;
                 _traceLocationButton = FindViewById<Button>(Resource.Id.traceLocationButton);
+                _idView = FindViewById<TextView>(Resource.Id.idView);
                 _traceLocationButton.Click += _traceLocationButton_Click;
+
+
 
                 //Get shared preferences data 
                 sharedPreferenceId = JsonConvert.DeserializeObject<Coordinates>(Intent.GetStringExtra("user"));
+                //Show id
+                _idView.Text = "User Id: " + sharedPreferenceId.uniqueId.ToString();
 
                 //Get device id for currentr user
                 getDeviceId();
 
                 //Get last known location of current user
+                latlon.uniqueId = sharedPreferenceId.uniqueId;
                 latlon = await WebRequestServer.GetLastKnownLocation(latlon);
+
 
                 //if respond is null
                 if (latlon == null)
                 {
-                    _lastKnownLocation.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A");
+                    _lastKnownLocation.Text = string.Format("Latitude: " + "N\\A" + "\nLongitude: " + "N\\A" + "\nAccuracy: " + "N\\A" + "\nDatetime: " + "N\\A" + "\nBearing: " + "N\\A" + "\nAltitude: " + "N\\A");
                 }
 
                 //Otherwise perform
                 else
-                    _lastKnownLocation.Text = string.Format("Latitude: " + latlon.Latitude + "\nLongitude: " + latlon.Longitude + "\nAccuracy: " + latlon.Accuracy);
+                    _lastKnownLocation.Text = string.Format("Latitude: " + latlon.Latitude + "\nLongitude: " + latlon.Longitude + "\nAccuracy: " + latlon.Accuracy + "\nDateTime: " + latlon.timeStamp + "\nBearing: " + latlon.Bearing+ "\nAltitude: " + latlon.altittude);
 
             }
             catch (Exception ex)
@@ -100,8 +113,26 @@ namespace GPS
 
         private void _traceLocationButton_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(TraceLocationActivity));
-            this.StartActivity(intent);
+            try
+            {
+                Intent intent = new Intent(this, typeof(TraceLocationActivity));
+                this.StartActivity(intent);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void OnStop()
+        {
+            base.OnStop();
+            isRunning = false;
         }
 
         /// <summary>
@@ -109,12 +140,22 @@ namespace GPS
         /// </summary>
         protected override void OnStart()
         {
-            base.OnStart();
-            Intent intent = new Intent(this, typeof(BackgroundService));
-            //Send preferences to the service to send id to server
-            intent.PutExtra("userId", sharedPreferenceId.uniqueId.ToString());
-            StartService(intent);
-            GelLocation.instance = this;
+            try
+            {
+                base.OnStart();
+                isRunning = true;
+                Intent intent = new Intent(this, typeof(BackgroundService));
+                //Send preferences to the service to send id to server
+                //intent.PutExtra("userId", sharedPreferenceId.uniqueId.ToString());
+                StartService(intent);
+                GelLocation.instance = this;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -123,6 +164,7 @@ namespace GPS
         protected override void OnPause()
         {
             base.OnPause();
+            //UnregisterReceiver(_receiver);
         }
 
         /// <summary>
@@ -130,8 +172,15 @@ namespace GPS
         /// </summary>
         protected override void OnDestroy()
         {
-            base.OnDestroy();
-            // UnregisterReceiver(_receiver);
+            try
+            {
+                base.OnDestroy();
+
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, "GetLocation-OnDestroy-Exception" + ex.Message, ToastLength.Long).Show();
+            }
         }
 
         /// <summary>
@@ -139,18 +188,26 @@ namespace GPS
         /// </summary>
         protected override void OnResume()
         {
-            //Register custom receiver receiver 
-            base.OnResume();
-            IntentFilter filter = new IntentFilter(MyLocationReceiver.GRID_STARTED);
-            filter.AddCategory(Intent.CategoryDefault);
-            _receiver = new MyLocationReceiver(this);
-            RegisterReceiver(_receiver, filter);
+            //Register custom receiver  
+            try
+            {
+                base.OnResume();
+                IntentFilter filter = new IntentFilter(MyLocationReceiver.GRID_STARTED);
+                filter.AddCategory(Intent.CategoryDefault);
+                _receiver = new MyLocationReceiver(this);
+                RegisterReceiver(_receiver, filter);
+            }
+            catch (Exception ex)
+            {
+                 Toast.MakeText(Application.Context, "GetLocation-OnResume" + ex.Message, ToastLength.Long).Show();
+            }
         }
 
- 
-
-
-        async private void streetAddress()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="latlon"></param>
+        async private void streetAddress(Coordinates latlon)
         {
             try
             {
@@ -192,7 +249,7 @@ namespace GPS
 
             catch (Java.IO.IOException ex)
             {
-                Toast.MakeText(Application.Context, "Network is unreachable", ToastLength.Short).Show();
+                Toast.MakeText(this, "Street Address " + ex.Message, ToastLength.Short).Show();
             }
 
             catch (Exception ex)
@@ -202,7 +259,6 @@ namespace GPS
 
         }
 
-
         /// <summary>
         /// Custom receiver class
         /// </summary>
@@ -210,7 +266,7 @@ namespace GPS
         public class MyLocationReceiver : BroadcastReceiver
         {
             GelLocation _myactivity;
-            //Coordinates GetLocation;
+            DateTime[] timeStamp = new DateTime[5];
             /// <summary>
             /// 
             /// </summary>
@@ -218,7 +274,6 @@ namespace GPS
             {
 
             }
-
 
             /// <summary>
             /// 
@@ -245,44 +300,70 @@ namespace GPS
                     //Geting instance of base class
                     _myactivity = GelLocation.instance;
 
-                    
+                    if (GelLocation.isRunning == true)
+                    {
+                    }
+
+                    else
+                    { 
+                        return;
+                    }
+
                     if (intent.Action == GRID_STARTED)
                     {
-                        _myactivity.latlon = JsonConvert.DeserializeObject<Coordinates>(intent.GetStringExtra("cor"));
-
+                        //_myactivity.latlon = JsonConvert.DeserializeObject<Coordinates>(intent.GetStringExtra("cor"));
                         //_myactivity.RunOnUiThread(() =>
                         //{
+                        string provider = intent.GetStringExtra("provider");
+                        string cordinates = intent.GetStringExtra("cordinates");
+                        string timeInterval = intent.GetStringExtra("timeStamp");
 
-                        _myactivity._locationText.Text = String.Format("Latitude: {0} \nLongitude: {1} \nAccuracy: {2} \nSpeed: {3}", _myactivity.latlon.Latitude, _myactivity.latlon.Longitude, _myactivity.latlon.Accuracy , _myactivity.latlon.speed);
-                        _myactivity.streetAddress();
-
-                        //Print provider list
-                        _myactivity._listOfProvider.Text = "";
-
-                        if(_myactivity.latlon.provider.Count == 0)
+                        if (timeInterval != null)
                         {
-                            _myactivity._listOfProvider.Text = "N\\A";
+                           timeStamp  = JsonConvert.DeserializeObject<DateTime[]>(intent.GetStringExtra("timeStamp"));
+
+                            _myactivity._lastTimeStamp.Text = "";
+                            for(int i = 0; i < timeStamp.Length; i++)
+                            {
+                                _myactivity._lastTimeStamp.Text += string.Format(timeStamp[i].ToString() + "\n");
+                            }
+
                         }
 
-                        for (int i = 0; i < _myactivity.latlon.provider.Count; i++)
+                        if (provider != null)
                         {
-                            _myactivity._listOfProvider.Text += String.Format(_myactivity.latlon.provider[i]);
+                            _myactivity.latlon = JsonConvert.DeserializeObject<Coordinates>(intent.GetStringExtra("provider"));
+                            _myactivity._listOfProvider.Text = "";
 
-                            if (i < _myactivity.latlon.provider.Count - 1)
+                            if (_myactivity.latlon.provider.Count == 0)
                             {
-                                _myactivity._listOfProvider.Text += "\n";
+                                _myactivity._listOfProvider.Text = "N\\A";
+                            }
+
+                            for (int i = 0; i < _myactivity.latlon.provider.Count; i++)
+                            {
+                                _myactivity._listOfProvider.Text += String.Format(_myactivity.latlon.provider[i]);
+                                if (i < _myactivity.latlon.provider.Count - 1)
+                                {
+                                    _myactivity._listOfProvider.Text += "\n";
+                                }
                             }
                         }
-                        //});
 
-                        //  Toast.MakeText(context, "Custom Receiver", ToastLength.Long).Show();
+                        else if (cordinates != null)
+                        {
+                            _myactivity.latlon = JsonConvert.DeserializeObject<Coordinates>(intent.GetStringExtra("cordinates"));
+                            _myactivity._locationText.Text = String.Format("Latitude: {0} \nLongitude: {1} \nAccuracy: {2} \nSpeed: {3} \nDateTime: {4} \nBearing: {5} \nAltitude: {6}", _myactivity.latlon.Latitude, _myactivity.latlon.Longitude, _myactivity.latlon.Accuracy, _myactivity.latlon.speed,_myactivity.latlon.timeStamp,_myactivity.latlon.Bearing,_myactivity.latlon.altittude);
+                            _myactivity.streetAddress(_myactivity.latlon);
+                        }
+                        //});
                     }
 
                 }
                 catch (Exception ex)
                 {
-
                     throw;
+//                    Toast.MakeText(Android.App.Application.Context, "GetLocation-OnReceive" + ex.Message, ToastLength.Long).Show();
                 }
             }
         }
