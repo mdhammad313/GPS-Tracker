@@ -20,6 +20,7 @@ D:\Projects\GPS-Tracker\GPS\bin\Debug\Hammad.PgGPS.apk
 D:\Projects\GPS-Tracker\GPS\bin\Debug\Hammad.PgGPS-Signed.apk
 D:\Projects\GPS-Tracker\GPS\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\GPS-Tracker\GPS\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.csprojResolveAssemblyReference.cache
 D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.dll
 D:\Projects\GPS-Tracker\GPS\obj\Debug\GPS.pdb
 D:\Projects\GPS-Tracker\GPS\obj\Debug\android\bin\Hammad.PgGPS.apk

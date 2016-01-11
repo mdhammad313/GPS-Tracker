@@ -1,0 +1,18 @@
+D:\Projects\GPS-Tracker\Battery Data\bin\Release\Battery Data.dll
+D:\Projects\GPS-Tracker\Battery Data\bin\Release\Battery Data.pdb
+D:\Projects\GPS-Tracker\Battery Data\bin\Release\Battery_Data.Battery_Data.apk
+D:\Projects\GPS-Tracker\Battery Data\bin\Release\Battery_Data.Battery_Data-Signed.apk
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\Battery Data.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\Battery Data.pdb
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\android\bin\Battery_Data.Battery_Data.apk
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\res\layout\batterystatus.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\res\layout\main.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\res\values\strings.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\res\drawable\icon.png
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\R.cs.flag
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\uploadflags.txt
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\Battery Data.csprojResolveAssemblyReference.cache
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\res\drawable\monoandroidsplash.png
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\res\values\styles.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Release\Battery Data.dll.mdb
+D:\Projects\GPS-Tracker\Battery Data\bin\Release\Battery Data.dll.mdb

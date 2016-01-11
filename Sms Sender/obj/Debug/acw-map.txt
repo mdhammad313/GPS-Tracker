@@ -1,0 +1,4 @@
+Sms_Sender.SmsActivity, Sms Sender;md55e8550d57d0ccabca140688b113bb23c.SmsActivity
+Sms_Sender.SmsActivity, Sms Sender, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md55e8550d57d0ccabca140688b113bb23c.SmsActivity
+Sms_Sender.SmsActivity;md55e8550d57d0ccabca140688b113bb23c.SmsActivity
+sms_sender.SmsActivity;md55e8550d57d0ccabca140688b113bb23c.SmsActivity

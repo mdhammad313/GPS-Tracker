@@ -6,25 +6,33 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+
 namespace Battery_Info
 {
     [Activity(Label = "Battery_Info", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
+            private TextView batteryStatusTextView;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.BatteryStatus);
+            Button batteryButton = FindViewById<Button>(Resource.Id.batteryButton);
+            batteryStatusTextView = FindViewById<TextView>(Resource.Id.batteryStatusTextView);
+            batteryStatus();
+        }
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
+        public void batteryStatus()
+        {
+            var filter = new IntentFilter(Intent.ActionBatteryChanged);
+            var battery = RegisterReceiver(null, filter);
+            int level = battery.GetIntExtra(BatteryManager.ExtraLevel, -1);
+            int scale = battery.GetIntExtra(BatteryManager.ExtraScale, -1);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            int BPercetage = (int)System.Math.Floor(level * 100D / scale);
+            batteryStatusTextView.Text += BPercetage + "%";
         }
     }
 }

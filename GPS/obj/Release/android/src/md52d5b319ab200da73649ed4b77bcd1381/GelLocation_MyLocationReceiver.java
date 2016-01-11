@@ -11,7 +11,7 @@ public class GelLocation_MyLocationReceiver
 		__md_methods = 
 			"n_onReceive:(Landroid/content/Context;Landroid/content/Intent;)V:GetOnReceive_Landroid_content_Context_Landroid_content_Intent_Handler\n" +
 			"";
-		mono.android.Runtime.register ("GPS.GelLocation/MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", GelLocation_MyLocationReceiver.class, __md_methods);
+		mono.android.Runtime.register ("GPS.GelLocation+MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", GelLocation_MyLocationReceiver.class, __md_methods);
 	}
 
 
@@ -19,14 +19,14 @@ public class GelLocation_MyLocationReceiver
 	{
 		super ();
 		if (getClass () == GelLocation_MyLocationReceiver.class)
-			mono.android.TypeManager.Activate ("GPS.GelLocation/MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("GPS.GelLocation+MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 	public GelLocation_MyLocationReceiver (md52d5b319ab200da73649ed4b77bcd1381.GelLocation p0) throws java.lang.Throwable
 	{
 		super ();
 		if (getClass () == GelLocation_MyLocationReceiver.class)
-			mono.android.TypeManager.Activate ("GPS.GelLocation/MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "GPS.GelLocation, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
+			mono.android.TypeManager.Activate ("GPS.GelLocation+MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "GPS.GelLocation, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
 	}
 
 

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">Sms Sender</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">Sms Sender</string>
+  <string name="SmsType">Select SMS Type</string>
+  <string-array name="smsArray">
+    <item>inbox</item>
+    <item>sent</item>
+    <item>draft</item>
+  </string-array>
 </resources>

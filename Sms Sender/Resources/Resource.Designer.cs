@@ -28,6 +28,22 @@ namespace Sms_Sender
 		{
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int smsArray = 2131034112;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -63,8 +79,23 @@ namespace Sms_Sender
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int MyButton = 2131099648;
+			// aapt resource value: 0x7f070004
+			public const int inboxButton = 2131165188;
+			
+			// aapt resource value: 0x7f070001
+			public const int phoneTextBox = 2131165185;
+			
+			// aapt resource value: 0x7f070000
+			public const int scrollView1 = 2131165184;
+			
+			// aapt resource value: 0x7f070002
+			public const int sendSMS = 2131165186;
+			
+			// aapt resource value: 0x7f070005
+			public const int showInbox = 2131165189;
+			
+			// aapt resource value: 0x7f070003
+			public const int smsSpinner = 2131165187;
 			
 			static Id()
 			{
@@ -80,7 +111,7 @@ namespace Sms_Sender
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int SendSms = 2130903040;
 			
 			static Layout()
 			{
@@ -101,6 +132,9 @@ namespace Sms_Sender
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
 			
+			// aapt resource value: 0x7f040002
+			public const int SmsType = 2130968578;
+			
 			static String()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -114,8 +148,8 @@ namespace Sms_Sender
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int Mono_Android_Theme_Splash = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int Mono_Android_Theme_Splash = 2131099648;
 			
 			static Style()
 			{

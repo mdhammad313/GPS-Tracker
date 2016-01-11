@@ -11,7 +11,7 @@ GPS.GelLocation, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52
 GPS.GelLocation;md52d5b319ab200da73649ed4b77bcd1381.GelLocation
 gps.GelLocation;md52d5b319ab200da73649ed4b77bcd1381.GelLocation
 GPS.GelLocation/MyLocationReceiver, GPS;md52d5b319ab200da73649ed4b77bcd1381.GelLocation_MyLocationReceiver
-GPS.GelLocation/MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d5b319ab200da73649ed4b77bcd1381.GelLocation_MyLocationReceiver
+GPS.GelLocation+MyLocationReceiver, GPS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d5b319ab200da73649ed4b77bcd1381.GelLocation_MyLocationReceiver
 GPS.GelLocation.MyLocationReceiver;md52d5b319ab200da73649ed4b77bcd1381.GelLocation_MyLocationReceiver
 gps.GelLocation_MyLocationReceiver;md52d5b319ab200da73649ed4b77bcd1381.GelLocation_MyLocationReceiver
 GPS.LoginActivity, GPS;md52d5b319ab200da73649ed4b77bcd1381.LoginActivity

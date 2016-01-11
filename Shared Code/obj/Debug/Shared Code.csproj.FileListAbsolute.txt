@@ -1,0 +1,5 @@
+D:\Projects\GPS-Tracker\Shared Code\bin\Debug\Shared Code.dll
+D:\Projects\GPS-Tracker\Shared Code\bin\Debug\Shared Code.pdb
+D:\Projects\GPS-Tracker\Shared Code\obj\Debug\Shared Code.csprojResolveAssemblyReference.cache
+D:\Projects\GPS-Tracker\Shared Code\obj\Debug\Shared Code.dll
+D:\Projects\GPS-Tracker\Shared Code\obj\Debug\Shared Code.pdb

@@ -5,4 +5,6 @@ D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\Newtonsoft.Json.dll
 D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\System.Core.dll
 D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\System.dll
 D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\System.Net.Http.dll
+D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\System.Xml.dll
 D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\System.Runtime.Serialization.dll
+D:\Projects\GPS-Tracker\GPS\obj\Release\android\assets\System.ServiceModel.Internals.dll

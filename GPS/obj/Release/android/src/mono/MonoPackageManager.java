@@ -81,6 +81,7 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		"GPS.dll",
 		"Newtonsoft.Json.dll",
+		"System.ServiceModel.Internals.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

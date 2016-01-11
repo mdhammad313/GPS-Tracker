@@ -30,3 +30,7 @@ D:\Projects\GPS-Tracker\GPS\obj\Release\res\drawable\icon.png
 D:\Projects\GPS-Tracker\GPS\obj\Release\R.cs.flag
 D:\Projects\GPS-Tracker\GPS\obj\Release\uploadflags.txt
 D:\Projects\GPS-Tracker\GPS\obj\Release\GPS.csprojResolveAssemblyReference.cache
+D:\Projects\GPS-Tracker\GPS\obj\Release\res\drawable\monoandroidsplash.png
+D:\Projects\GPS-Tracker\GPS\obj\Release\res\values\styles.xml
+D:\Projects\GPS-Tracker\GPS\obj\Release\GPS.dll.mdb
+D:\Projects\GPS-Tracker\GPS\bin\Release\GPS.dll.mdb

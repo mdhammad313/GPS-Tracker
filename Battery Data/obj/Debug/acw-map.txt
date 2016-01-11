@@ -1,0 +1,4 @@
+Battery_Data.BatteryStatus, Battery Data;md55ef85d5143ca9562b725b616a60e41ea.BatteryStatus
+Battery_Data.BatteryStatus, Battery Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md55ef85d5143ca9562b725b616a60e41ea.BatteryStatus
+Battery_Data.BatteryStatus;md55ef85d5143ca9562b725b616a60e41ea.BatteryStatus
+battery_data.BatteryStatus;md55ef85d5143ca9562b725b616a60e41ea.BatteryStatus

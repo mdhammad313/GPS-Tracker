@@ -1,0 +1,14 @@
+D:\Projects\GPS-Tracker\Battery Data\bin\Debug\Battery Data.dll
+D:\Projects\GPS-Tracker\Battery Data\bin\Debug\Battery Data.pdb
+D:\Projects\GPS-Tracker\Battery Data\bin\Debug\Battery_Data.Battery_Data.apk
+D:\Projects\GPS-Tracker\Battery Data\bin\Debug\Battery_Data.Battery_Data-Signed.apk
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\Battery Data.csprojResolveAssemblyReference.cache
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\Battery Data.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\Battery Data.pdb
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\android\bin\Battery_Data.Battery_Data.apk
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\res\layout\batterystatus.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\res\layout\main.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\res\values\strings.xml
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\res\drawable\icon.png
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\R.cs.flag
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\uploadflags.txt

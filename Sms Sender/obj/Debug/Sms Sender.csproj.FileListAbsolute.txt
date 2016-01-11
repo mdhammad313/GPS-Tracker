@@ -1,0 +1,13 @@
+D:\Projects\GPS-Tracker\Sms Sender\bin\Debug\Sms Sender.dll
+D:\Projects\GPS-Tracker\Sms Sender\bin\Debug\Sms Sender.pdb
+D:\Projects\GPS-Tracker\Sms Sender\bin\Debug\Sms_Sender.Sms_Sender.apk
+D:\Projects\GPS-Tracker\Sms Sender\bin\Debug\Sms_Sender.Sms_Sender-Signed.apk
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\Sms Sender.csprojResolveAssemblyReference.cache
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\Sms Sender.dll
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\Sms Sender.pdb
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\android\bin\Sms_Sender.Sms_Sender.apk
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\res\layout\sendsms.xml
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\res\values\strings.xml
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\res\drawable\icon.png
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\R.cs.flag
+D:\Projects\GPS-Tracker\Sms Sender\obj\Debug\uploadflags.txt

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Battery_Data.Battery_Data" android:versionCode="1" android:versionName="1.0">
+  <uses-sdk android:minSdkVersion="11" />
+  <application android:label="Battery Data" android:icon="@drawable/icon" android:name="mono.android.app.Application" android:debuggable="true">
+    <activity android:label="BatteryStatusActivity" android:name="md55ef85d5143ca9562b725b616a60e41ea.BatteryStatus" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="Battery_Data.Battery_Data.mono.MonoRuntimeProvider.__mono_init__" />
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.Battery_Data.Battery_Data" />
+      </intent-filter>
+    </receiver>
+    <activity android:label="BatteryStatusActivity" android:name="battery_data.battery_data.TrialSplashScreen" android:theme="@style/Mono.Android.Theme.Splash" android:noHistory="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+</manifest>

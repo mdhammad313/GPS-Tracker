@@ -28,11 +28,11 @@ namespace GPS
         /// Server Ip where Server is hosted
         /// </summary>
         /// 
-        //private static Uri ServerRootURL = new Uri("http://192.168.0.71");
-        //private static string ServerLocation = "/webservice/api/location/";
+        private static Uri ServerRootURL = new Uri("http://192.168.0.71");
+        private static string ServerLocation = "/webservice/api/location/";
 
-         private static Uri ServerRootURL = new Uri("http://pggpstracker.azurewebsites.net/");
-         private static string ServerLocation = "/api/location/";
+        // private static Uri ServerRootURL = new Uri("http://pggpstracker.azurewebsites.net/");
+        // private static string ServerLocation = "/api/location/";
 
         /// <summary>
         /// 

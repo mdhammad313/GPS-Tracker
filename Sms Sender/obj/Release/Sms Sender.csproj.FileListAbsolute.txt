@@ -1,0 +1,19 @@
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Sms Sender.dll
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Sms Sender.pdb
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Sms_Sender.Sms_Sender.apk
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Sms_Sender.Sms_Sender-Signed.apk
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\Sms Sender.csprojResolveAssemblyReference.cache
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\Sms Sender.dll
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\Sms Sender.pdb
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\android\bin\Sms_Sender.Sms_Sender.apk
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\res\values\strings.xml
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\res\drawable\icon.png
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\R.cs.flag
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\uploadflags.txt
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\res\layout\sendsms.xml
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\res\drawable\monoandroidsplash.png
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\res\values\styles.xml
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Newtonsoft.Json.dll
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Newtonsoft.Json.xml
+D:\Projects\GPS-Tracker\Sms Sender\obj\Release\Sms Sender.dll.mdb
+D:\Projects\GPS-Tracker\Sms Sender\bin\Release\Sms Sender.dll.mdb

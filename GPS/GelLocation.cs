@@ -7,7 +7,6 @@ using Android.Widget;
 using Android.OS;
 using Android.Locations;
 
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Sms_Sender.Sms_Sender" android:versionCode="1" android:versionName="1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Sms_Sender.Sms_Sender" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
 	<uses-sdk />
 	<application android:label="Sms Sender" android:icon="@drawable/Icon"></application>
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.READ_SMS" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
 </manifest>

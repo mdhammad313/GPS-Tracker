@@ -1,0 +1,7 @@
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\Battery Data.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\Mono.Android.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\mscorlib.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\System.Core.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\System.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\System.Xml.dll
+D:\Projects\GPS-Tracker\Battery Data\obj\Debug\assemblies\System.Xml.Linq.dll
